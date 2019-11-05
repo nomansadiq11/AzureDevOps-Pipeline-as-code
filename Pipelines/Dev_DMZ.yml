@@ -1,0 +1,12 @@
+variables:
+- group: Dev_DMZ
+  - name: BackupPath
+    value: 'C$\VSTS'
+  - name: CsrAdmin
+    value: 'C$\inetpub\wwwroot\CsrAdmin'
+  - name: ServerIP
+    value: "0.0.0.0"
+  - name: ServerLogin
+    value: "loginname"
+  - name: ServerPW
+    value: "password"
