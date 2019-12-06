@@ -1,3 +1,5 @@
+## Use windows 2019 or VS 2019 
+
 pool:
     name: Azure Pipelines
     demands:
