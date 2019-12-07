@@ -1,0 +1,45 @@
+## Use windows 2019 or VS 2019 
+
+pool:
+    name: Azure Pipelines
+    demands:
+    - MSBuild
+    - Xamarin.Android
+    - JDK
+  
+  variables:
+    BuildConfiguration: 'Release'
+  
+  steps:
+  - task: NuGetToolInstaller@0
+    displayName: 'Use NuGet 4.4.1'
+    inputs:
+      versionSpec: 4.4.1
+  
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '$(Parameters.restorePkgSolution)'
+  
+  - task: XamarinAndroid@1
+    displayName: 'Build Xamarin.Android project App1/App1.Android/App1.Android.csproj'
+    inputs:
+      projectFile: App1/App1.Android/App1.Android.csproj
+      outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
+      configuration: '$(BuildConfiguration)'
+  
+  - task: AndroidSigning@3
+    displayName: 'Signing and aligning APK file(s) $(build.binariesdirectory)/$(BuildConfiguration)/*.apk'
+    inputs:
+      apkFiles: '$(Parameters.appFiles)'
+      apksignerKeystoreFile: 'add2f002-5516-4c60-bc58-09de260218bc'
+      apksignerKeystorePassword: *****
+      apksignerKeystoreAlias: calculator
+      apksignerKeyPassword: ******
+  
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      PathtoPublish: '$(build.binariesdirectory)/$(BuildConfiguration)'
+    condition: succeededOrFailed()
+  
