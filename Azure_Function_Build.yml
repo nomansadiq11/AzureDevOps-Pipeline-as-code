@@ -32,4 +32,4 @@ steps:
   displayName: 'Publish Artifact: drop'
   inputs:
     publishLocation: FilePath
-    TargetPath: '\\dxb-tfs-bs\buildDrops\$(Build.DefinitionName)\$(Build.BuildNumber)'
+    TargetPath: 'output directory'

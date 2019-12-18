@@ -1,5 +1,5 @@
 variables:
-- group: Dev_DMZ
+- group: Groupname
   - name: BackupPath
     value: 'C$\VSTS'
   - name: CsrAdmin
