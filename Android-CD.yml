@@ -1,0 +1,9 @@
+steps:
+    - task: ms-vsclient.google-play.google-play-release.GooglePlayRelease@3
+      displayName: 'Release Alpha'
+      inputs:
+        serviceConnection: 'Google Account'
+        apkFile: '$(System.DefaultWorkingDirectory)/_Android-CI/drop/'
+        track: alpha
+        rolloutToUserFraction: true
+        userFraction: 2.0
