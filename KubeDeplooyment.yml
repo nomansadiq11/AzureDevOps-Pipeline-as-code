@@ -1,0 +1,9 @@
+steps:
+    - task: Kubernetes@1
+      displayName: 'kubectl apply'
+      inputs:
+        kubernetesServiceEndpoint: kubeconnectionstring
+        namespace: default
+        command: apply
+        useConfigurationFile: true
+        configuration: '$(System.DefaultWorkingDirectory)/drop/Deployment.yml'
